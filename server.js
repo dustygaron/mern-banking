@@ -1,11 +1,13 @@
 // Pull in required dependencies
-const express = require("express")
-const mongoose = require("mongoose")
-const bodyParser = require("body-parser")
-const passport = require("passport")
+const express = require('express')
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const passport = require('passport')
+require('dotenv').config()
 
-// Pull in user routes
-const users = require("./routes/api/users")
+// Pull in routes
+const users = require('./routes/api/users')
+const plaid = require('./routes/api/plaid')
 
 // Initalize app using express()
 const app = express()
@@ -19,7 +21,7 @@ app.use(
 app.use(bodyParser.json())
 
 // Pull in MongoURI from keys.js & connect to DB
-const db = require("./config/keys").mongoURI
+const db = require('./config/keys').mongoURI
 
 mongoose
   .connect(
@@ -33,10 +35,11 @@ mongoose
 app.use(passport.initialize())
 
 // Passport config
-require("./config/passport")(passport)
+require('./config/passport')(passport)
 
 // Routes
-app.use("/api/users", users)
+app.use('/api/users', users)
+app.use('/api/plaid', plaid)
 
 // Set PORT for server to run on & app to listen on
 const port = process.env.PORT || 5000;

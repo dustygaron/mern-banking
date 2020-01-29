@@ -13,7 +13,7 @@ export default class Navbar extends Component {
               className='col s5 brand-logo center black-text'
             >
               <i className='material-icons'>code</i>
-              MERN
+              MERN Banking
             </Link>
           </div>
         </nav>

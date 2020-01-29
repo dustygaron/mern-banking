@@ -1,4 +1,4 @@
 module.exports = {
-  mongoURI: "mongodb+srv://dustyuser:dustypassword@mern-banking-cluster-vsom6.mongodb.net/test?retryWrites=true&w=majority",
+  mongoURI: process.env.MONGO_URI,
   secretOrKey: "secret"
 }
