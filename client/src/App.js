@@ -14,6 +14,7 @@ import Login from './components/auth/Login'
 import PrivateRoute from './components/private-route/PrivateRoute'
 import Dashboard from './components/dashboard/Dashboard'
 
+
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
 

@@ -1,16 +1,17 @@
 // Pull in required dependencies
-const express = require("express")
+const express = require('express')
 const router = express.Router()
-const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
-const keys = require("../../config/keys")
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const keys = require('../../config/keys')
 
 // Load input validation
-const validateRegisterInput = require("../../validation/register")
-const validateLoginInput = require("../../validation/login")
+const validateRegisterInput = require('../../validation/register')
+const validateLoginInput = require('../../validation/login')
 
 // Load User model
-const User = require("../../models/User")
+const User = require('../../models/User')
+
 
 // Register endpoint
 // -----------------
@@ -18,7 +19,7 @@ const User = require("../../models/User")
 // @desc Register user
 // @access Public
 // -----------------
-router.post("/register", (req, res) => {
+router.post('/register', (req, res) => {
   // Pull errors and isValid variables from validateRegisterInput(req.body) func and check input validation
   const { errors, isValid } = validateRegisterInput(req.body)
 
@@ -30,7 +31,7 @@ router.post("/register", (req, res) => {
   // If valid input, use MongoDB's User.findOne() to see if they user already exists
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ email: "Email already exists" });
+      return res.status(400).json({ email: 'Email already exists' });
     } else {
       // If user is new user, fill in the fields (name, email, password) with data sent in the body of the request
       const newUser = new User({
@@ -61,7 +62,7 @@ router.post("/register", (req, res) => {
 // @desc Login user and return JWT token
 // @access Public
 // -----------------
-router.post("/login", (req, res) => {
+router.post('/login', (req, res) => {
   // Pull the errors and isValid variables from validateLoginInput(req.body) func and check input validation
   const { errors, isValid } = validateLoginInput(req.body)
 
@@ -77,7 +78,7 @@ router.post("/login", (req, res) => {
 
     // If does not exist
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" })
+      return res.status(404).json({ emailnotfound: 'Email not found' })
     }
 
     // If does exist, use bcryptjs to compare submitted password with hashed password in DB
@@ -102,14 +103,14 @@ router.post("/login", (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token
+              token: 'Bearer ' + token
             })
           }
         )
       } else {
         return res
           .status(400)
-          .json({ passwordincorrect: "Password incorrect" })
+          .json({ passwordincorrect: 'Password incorrect' })
       }
     })
   })

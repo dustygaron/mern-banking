@@ -2,21 +2,17 @@ import React, { Component } from 'react'
 import PlaidLinkButton from 'react-plaid-link-button'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { logoutUser } from '../../actions/authActions'
 import { getAccounts, addAccount } from '../../actions/accountActions'
 import Accounts from './Accounts'
 import Spinner from './Spinner'
+import blob from '../../img/blob-login.svg'
 
 
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getAccounts()
   }
-  // Logout
-  onLogoutClick = e => {
-    e.preventDefault()
-    this.props.logoutUser()
-  }
+
   // Add account
   handleOnSuccess = (token, metadata) => {
     const plaidData = {
@@ -39,20 +35,22 @@ class Dashboard extends Component {
     } else {
       // User has no accounts linked
       dashboardContent = (
-        <div className='row'>
+        <div className='row dashboard-wrapper'>
+          <img src={blob} alt='blob' className='blob' />
           <div className='col s12 center-align'>
-            <h4>
-              <b>Welcome,</b> {user.name.split(' ')[0]}
-            </h4>
-            <p className='flow-text grey-text text-darken-1'>
-              To get started, link your first bank account below
-            </p>
-            <div>
+
+            <div className='dashboard-wrapper'>
+              <h4>
+                <b>Welcome,</b> {user.name.split(' ')[0]}
+              </h4>
+              <p className='flow-text grey-text text-darken-1'>
+                To get started, link your first bank account below.
+              </p>
+            </div>
+
+            <div className='dashboard-wrapper'>
               <PlaidLinkButton
-                buttonProps={{
-                  className:
-                    'btn btn-large waves-effect waves-light hoverable blue accent-3 main-btn'
-                }}
+                buttonProps={{ className: 'btn btn-large waves-effect waves-light hoverable accent-3' }}
                 plaidLinkProps={{
                   clientName: process.env.REACT_APP_PLAID_CLIENT_ID,
                   key: process.env.REACT_APP_PLAID_PUBLIC_KEY,
@@ -65,12 +63,7 @@ class Dashboard extends Component {
                 Link Account
               </PlaidLinkButton>
             </div>
-            <button
-              onClick={this.onLogoutClick}
-              className='btn btn-large waves-effect waves-light hoverable red accent-3 main-btn'
-            >
-              Logout
-            </button>
+
           </div>
         </div>
       )
@@ -80,7 +73,6 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
   getAccounts: PropTypes.func.isRequired,
   addAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -92,4 +84,7 @@ const mapStateToProps = state => ({
   plaid: state.plaid
 })
 
-export default connect(mapStateToProps, { logoutUser, getAccounts, addAccount })(Dashboard)
+export default connect(mapStateToProps, {
+  getAccounts,
+  addAccount
+})(Dashboard)

@@ -1,13 +1,141 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ----------*/
+/* Fonts
+/* ----------*/
+@font-face {
+  font-family: 'Mont';
+  src: url('../../client/src/fonts/Mont-Regular.eot');
+  src: local('☺'), url('../../client/src/fonts/Mont-Regular.woff') format('woff'), url('../../client/src/fonts/Mont-Regular.ttf') format('truetype'), url('../../client/src/fonts/Mont-Regular.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Mont';
+  src: url('../../client/src/fonts/Mont-Bold.eot');
+  src: local('☺'), url('../../client/src/fonts/Mont-Bold.woff') format('woff'), url('../../client/src/fonts/Mont-Bold.ttf') format('truetype'), url('../../client/src/fonts/Mont-Bold.svg') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Mont';
+  src: url('../../client/src/fonts/Mont-Heavy.eot');
+  src: local('☺'), url('../../client/src/fonts/Mont-Heavy.woff') format('woff'), url('../../client/src/fonts/Mont-Heavy.ttf') format('truetype'), url('../../client/src/fonts/Mont-Heavy.svg') format('svg');
+  font-weight: 800;
+  font-style: normal;
+}
+/* -------------------- */
+
+body  {
+  font-family: 'Mont', sans-serif;
+  color: #234;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h2 {
+  font-weight: 600;
+}
+
+/* Nav */
+nav {
+  background-color: transparent;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+   margin-top: 50px;
+}
+
+nav ul a {
+  color: #234;
+}
+
+nav ul a:hover,
+button.btn-logout:hover {
+  background: transparent;
+  color: #777;
+}
+
+.btn-logout {
+  background: transparent;
+  border: none;
+  font-family: 'Mont';
+  text-transform: capitalize;
+}
+
+/* Logo */
+.piggy {
+  max-width: 190px;
+}
+
+/* Spinner */
+.spinner {
+  width: 320px;
+  margin: 10% auto;
+  display: block;
+}
+
+
+/* ------------ */
+/* Landing
+/* ------------ */
+.landing-wrapper {
+  height: 75vh; 
+}
+
+.landing-wrapper span {
+  font-weight: 600;
+}
+
+.btn-get-started {
+  border-radius: 100px;
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: #e25656;
+}
+
+.btn-get-started:hover {
+  background-color: #e47b55;
+  transform: translateY(-2.5px);
+}
+
+/* ------------ */
+/* Wrappers
+/* ------------ */
+.register-wrapper,
+.login-wrapper,
+.login-wrapper h2,
+.register-wrapper h2,
+.dashboard-wrapper {
+  margin-top: 3%;
+  padding: 2%;
+  border-radius: 30px;
+  position: relative;
+  z-index: 100;
+}
+
+.blob {
+  position: absolute;
+  z-index: 0;
+}
+
+/* ----------------------- */
+/* Buttons
+/* ----------------------- */
+.register-wrapper .btn,
+.login-wrapper .btn, 
+.dashboard-wrapper .btn {
+  background-color: #e25656;
+  border-radius: 100px;
+}
+
+.register-wrapper .btn:hover,
+.login-wrapper .btn:hover,
+.dashboard-wrapper .btn:hover {
+  transform: translateY(-2.5px);
+}
+
+/* ---------------- */
+/* Dashboard Wrapper
+/* ---------------- */
+.dashboard-wrapper {
+  margin-top: 3%;
+  padding: 2%;
+  border-radius: 30px;
 }

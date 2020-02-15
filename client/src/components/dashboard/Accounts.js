@@ -77,24 +77,30 @@ class Accounts extends Component {
     return (
       <div className='row'>
         <div className='col s12'>
+
           <button
             onClick={this.onLogoutClick}
             className='btn-flat waves-effect'
           >
             <i className='material-icons left'>keyboard_backspace</i> Log Out
           </button>
+
           <h4>
             <b>Welcome!</b>
           </h4>
+
           <p className='grey-text text-darken-1'>
             Hey there, {user.name.split(' ')[0]}
           </p>
+
           <h5>
             <b>Linked Accounts</b>
           </h5>
+
           <p className='grey-text text-darken-1'>
             Add or remove your bank accounts below
           </p>
+
           <ul>{accountItems}</ul>
           <PlaidLinkButton
             buttonProps={{

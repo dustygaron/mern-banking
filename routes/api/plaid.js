@@ -5,7 +5,6 @@ const router = express.Router()
 const passport = require('passport')
 const moment = require('moment')
 const mongoose = require('mongoose')
-require('dotenv').config()
 
 // Load account and user models
 const Account = require('../../models/Account')
