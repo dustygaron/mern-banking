@@ -50,7 +50,9 @@ class Dashboard extends Component {
 
             <div className='dashboard-wrapper'>
               <PlaidLinkButton
-                buttonProps={{ className: 'btn btn-large waves-effect waves-light hoverable accent-3' }}
+                buttonProps={{
+                  className: 'btn btn-large waves-effect waves-light hoverable accent-3'
+                }}
                 plaidLinkProps={{
                   clientName: process.env.REACT_APP_PLAID_CLIENT_ID,
                   key: process.env.REACT_APP_PLAID_PUBLIC_KEY,

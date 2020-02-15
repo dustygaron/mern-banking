@@ -233,6 +233,10 @@ input[type=password]:not(.browser-default) {
   margin-left: 20px;
 }
 
+.num-of-transactions {
+  margin-bottom: 10px;
+}
+
 .btn-delete {
   margin-right: 5px;
   background-color: var(--medgray);
@@ -241,4 +245,29 @@ input[type=password]:not(.browser-default) {
 .btn-delete:hover {
   margin-right: 5px;
   background-color: var(--navy);
+}
+
+.MuiTable-root td,
+.MuiTable-root th,
+.MTableToolbar-title-249,
+.MuiInputBase-root,
+.MuiTypography-caption,
+.MuiTypography-h6 {
+  font-family: 'Mont' !important;
+}
+
+.MuiInput-underline:before {
+  border-bottom: 1px solid white !important;
+}
+
+.MuiInput-underline:before:active {
+  border-bottom: 1px solid white !important;
+}
+
+.MuiPaper-root.MuiInput-underline:after {
+  border-bottom: none;
+}
+
+.MTableToolbar-searchField-250 {
+  width: 33%;
 }

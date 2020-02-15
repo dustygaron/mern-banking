@@ -51,7 +51,7 @@ class Accounts extends Component {
     const { transactions, transactionsLoading } = this.props.plaid
 
     let accountItems = accounts.map(account => (
-      <p key={account._id}>
+      <p key={account._id} >
         <button
           onClick={this.onDeleteClick.bind(this, account._id)}
           className='btn btn-small btn-floating  btn-delete'
@@ -94,7 +94,7 @@ class Accounts extends Component {
             </h2>
 
             <p className='grey-text text-darken-1'>
-              Welcome back, <b>{user.name.split(' ')[0]}</b>. Add or remove your bank accounts below
+              Welcome back, <b>{user.name.split(' ')[0]}</b>. Add or remove your bank accounts below.
             </p>
           </div>
 
@@ -130,7 +130,7 @@ class Accounts extends Component {
             <p className='grey-text text-darken-1'>Fetching transactions...</p>
           ) : (
               <>
-                <p className='grey-text text-darken-1'>
+                <div className='grey-text text-darken-1 num-of-transactions'>
                   You have <b>{transactionsData.length}</b> transactions from your
                 <b> {accounts.length}</b> linked
                 {accounts.length > 1 ? (
@@ -139,7 +139,7 @@ class Accounts extends Component {
                       <span> account </span>
                     )}
                   from the past 30 days
-              </p>
+                </div>
 
                 <MaterialTable
                   columns={transactionsColumns}
