@@ -68,7 +68,7 @@ class Login extends Component {
                 Login
               </h2>
               <p className='grey-text text-darken-1'>
-                Don't have an account? <Link to='/register'>Register</Link>
+                Don't have an account? <Link to='/register' className='link'>Register</Link>
               </p>
             </div>
 

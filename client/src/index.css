@@ -1,3 +1,15 @@
+:root {
+  --navy: #234;
+  --orange: #e47b55;
+  --orangered: #e25656;
+  --purple: #741b53;
+  --medgray: #999;
+}
+
+/* * {
+  font-family: 'Mont' !important;
+} */
+
 /* ----------*/
 /* Fonts
 /* ----------*/
@@ -26,11 +38,20 @@
 
 body  {
   font-family: 'Mont', sans-serif;
-  color: #234;
+  color: var(--navy);
 }
 
 h2 {
   font-weight: 600;
+}
+
+p {
+  font-size: 18px;
+}
+
+hr {
+  margin-top: 2rem; 
+  opacity: .2;
 }
 
 /* Nav */
@@ -42,13 +63,17 @@ nav {
 }
 
 nav ul a {
-  color: #234;
+  color: var(--navy);
 }
 
 nav ul a:hover,
 button.btn-logout:hover {
   background: transparent;
-  color: #777;
+  color: var(--medgray);
+}
+
+.link {
+  color: var(--orange)
 }
 
 .btn-logout {
@@ -87,11 +112,11 @@ button.btn-logout:hover {
   text-transform: capitalize;
   font-size: 18px;
   font-weight: 400;
-  background-color: #e25656;
+  background-color: var(--orangered);
 }
 
 .btn-get-started:hover {
-  background-color: #e47b55;
+  background-color: var(--orange);
   transform: translateY(-2.5px);
 }
 
@@ -101,10 +126,11 @@ button.btn-logout:hover {
 .register-wrapper,
 .login-wrapper,
 .login-wrapper h2,
+.login-wrapper p,
 .register-wrapper h2,
-.dashboard-wrapper {
+.register-wrapper p,
+.dashboard-wrapper  {
   margin-top: 3%;
-  padding: 2%;
   border-radius: 30px;
   position: relative;
   z-index: 100;
@@ -121,7 +147,7 @@ button.btn-logout:hover {
 .register-wrapper .btn,
 .login-wrapper .btn, 
 .dashboard-wrapper .btn {
-  background-color: #e25656;
+  background-color: var(--orangered);
   border-radius: 100px;
 }
 
@@ -129,6 +155,7 @@ button.btn-logout:hover {
 .login-wrapper .btn:hover,
 .dashboard-wrapper .btn:hover {
   transform: translateY(-2.5px);
+  background-color: var(--orange);
 }
 
 /* ---------------- */
@@ -138,4 +165,80 @@ button.btn-logout:hover {
   margin-top: 3%;
   padding: 2%;
   border-radius: 30px;
+}
+
+
+/* ---------------- */
+/* Forms
+/* ---------------- */
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 1px solid var(--navy);
+  -webkit-box-shadow: 0 1px 0 0 var(--navy);
+  box-shadow: 0 1px 0 0 var(--navy);
+}
+
+input[type=text]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=password]:not(.browser-default) {
+  border-bottom: 1px solid var(--navy);
+}
+
+/* label color */
+.input-field label {
+  color: var(--navy) !important;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: var(--navy) !important;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid var(--navy) !important;
+  box-shadow: 0 1px 0 0 var(--navy) !important;
+}
+
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid var(--navy) !important;
+  box-shadow: 0 1px 0 0 var(--navy) !important;
+}
+
+.input-field .prefix.active {
+  color: var(--navy) !important;
+}
+
+/* ---------------- */
+/* Accounts
+/* ---------------- */
+.accounts-wrapper {
+  background-color: #f8f8f8;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.linked-accounts {
+  display: flex;
+  align-items: center;
+  background: #eee;
+  border-radius: 10px;
+  padding: 1%;
+  margin-bottom: 10px;
+}
+
+.linked-accounts p {
+  margin-left: 20px;
+}
+
+.btn-delete {
+  margin-right: 5px;
+  background-color: var(--medgray);
+}
+
+.btn-delete:hover {
+  margin-right: 5px;
+  background-color: var(--navy);
 }

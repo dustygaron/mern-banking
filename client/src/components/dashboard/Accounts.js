@@ -1,59 +1,67 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import PlaidLinkButton from 'react-plaid-link-button';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import PlaidLinkButton from 'react-plaid-link-button'
+import { connect } from 'react-redux'
 import {
   getTransactions,
   addAccount,
   deleteAccount
-} from '../../actions/accountActions';
-import { logoutUser } from '../../actions/authActions';
-import MaterialTable from 'material-table'; // https://mbrn.github.io/material-table/#/
+} from '../../actions/accountActions'
+import { logoutUser } from '../../actions/authActions'
+import MaterialTable from 'material-table'
+
 
 class Accounts extends Component {
+
   componentDidMount() {
-    const { accounts } = this.props;
-    this.props.getTransactions(accounts);
+    const { accounts } = this.props
+    this.props.getTransactions(accounts)
   }
+
   // Add account
   handleOnSuccess = (token, metadata) => {
-    const { accounts } = this.props;
+    const { accounts } = this.props
     const plaidData = {
       public_token: token,
       metadata: metadata,
       accounts: accounts
-    };
-    this.props.addAccount(plaidData);
-  };
+    }
+    this.props.addAccount(plaidData)
+  }
+
   // Delete account
   onDeleteClick = id => {
-    const { accounts } = this.props;
+    const { accounts } = this.props
     const accountData = {
       id: id,
       accounts: accounts
-    };
-    this.props.deleteAccount(accountData);
-  };
+    }
+    this.props.deleteAccount(accountData)
+  }
+
   // Logout
   onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-  };
+    e.preventDefault()
+    this.props.logoutUser()
+  }
+
   render() {
-    const { user, accounts } = this.props;
-    const { transactions, transactionsLoading } = this.props.plaid;
+
+    const { user, accounts } = this.props
+    const { transactions, transactionsLoading } = this.props.plaid
+
     let accountItems = accounts.map(account => (
-      <li key={account._id} style={{ marginTop: '1rem' }}>
+      <p key={account._id}>
         <button
-          style={{ marginRight: '1rem' }}
           onClick={this.onDeleteClick.bind(this, account._id)}
-          className='btn btn-small btn-floating waves-effect waves-light hoverable red accent-3'
+          className='btn btn-small btn-floating  btn-delete'
         >
-          <i className='material-icons'>delete</i>
+          <i className='material-icons'>clear</i>
         </button>
         <b>{account.institutionName}</b>
-      </li>
-    ));
+      </p>
+    ))
+
     // Setting up data table
     const transactionsColumns = [
       { title: 'Account', field: 'account' },
@@ -61,8 +69,10 @@ class Accounts extends Component {
       { title: 'Name', field: 'name' },
       { title: 'Amount', field: 'amount' },
       { title: 'Category', field: 'category' }
-    ];
-    let transactionsData = [];
+    ]
+
+    let transactionsData = []
+
     transactions.forEach(function (account) {
       account.transactions.forEach(function (transaction) {
         transactionsData.push({
@@ -71,41 +81,32 @@ class Accounts extends Component {
           category: transaction.category[0],
           name: transaction.name,
           amount: transaction.amount
-        });
-      });
-    });
+        })
+      })
+    })
+
     return (
-      <div className='row'>
-        <div className='col s12'>
+      <div>
+        <div className='col s12 accounts-wrapper'>
+          <div>
+            <h2>
+              Linked Accounts
+            </h2>
 
-          <button
-            onClick={this.onLogoutClick}
-            className='btn-flat waves-effect'
-          >
-            <i className='material-icons left'>keyboard_backspace</i> Log Out
-          </button>
+            <p className='grey-text text-darken-1'>
+              Welcome back, <b>{user.name.split(' ')[0]}</b>. Add or remove your bank accounts below
+            </p>
+          </div>
 
-          <h4>
-            <b>Welcome!</b>
-          </h4>
+          <div className='linked-accounts'>
+            <h6>Your Linked Accounts:</h6>
+            <p>{accountItems}</p>
+          </div>
 
-          <p className='grey-text text-darken-1'>
-            Hey there, {user.name.split(' ')[0]}
-          </p>
 
-          <h5>
-            <b>Linked Accounts</b>
-          </h5>
-
-          <p className='grey-text text-darken-1'>
-            Add or remove your bank accounts below
-          </p>
-
-          <ul>{accountItems}</ul>
           <PlaidLinkButton
             buttonProps={{
-              className:
-                'btn btn-large waves-effect waves-light hoverable blue accent-3 main-btn'
+              className: 'btn btn-large waves-effect waves-light btn-get-started'
             }}
             plaidLinkProps={{
               clientName: process.env.REACT_APP_PLAID_CLIENT_ID,
@@ -118,10 +119,13 @@ class Accounts extends Component {
           >
             Add Account
           </PlaidLinkButton>
-          <hr style={{ marginTop: '2rem', opacity: '.2' }} />
+
+          <hr />
+
           <h5>
             <b>Transactions</b>
           </h5>
+
           {transactionsLoading ? (
             <p className='grey-text text-darken-1'>Fetching transactions...</p>
           ) : (
@@ -136,18 +140,21 @@ class Accounts extends Component {
                     )}
                   from the past 30 days
               </p>
+
                 <MaterialTable
                   columns={transactionsColumns}
                   data={transactionsData}
                   title='Search Transactions'
                 />
+
               </>
             )}
         </div>
       </div>
-    );
+    )
   }
 }
+
 Accounts.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   getTransactions: PropTypes.func.isRequired,
@@ -156,11 +163,10 @@ Accounts.propTypes = {
   accounts: PropTypes.array.isRequired,
   plaid: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired
-};
+}
+
 const mapStateToProps = state => ({
   plaid: state.plaid
-});
-export default connect(
-  mapStateToProps,
-  { logoutUser, getTransactions, addAccount, deleteAccount }
-)(Accounts);
+})
+
+export default connect(mapStateToProps, { logoutUser, getTransactions, addAccount, deleteAccount })(Accounts)
