@@ -1,6 +1,9 @@
 {
   "name": "mern-banking",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.15.0"
+  },
   "description": "mern banking app",
   "main": "server.js",
   "scripts": {
