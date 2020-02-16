@@ -271,3 +271,17 @@ input[type=password]:not(.browser-default) {
 .MTableToolbar-searchField-250 {
   width: 33%;
 }
+
+/* ---------------- */
+/* Footer 
+/* ---------------- */
+small a {
+  color: var(--orange);
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -8%;
+}

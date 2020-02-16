@@ -13,6 +13,7 @@ import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import PrivateRoute from './components/private-route/PrivateRoute'
 import Dashboard from './components/dashboard/Dashboard'
+import Footer from './components/Footer'
 
 
 // Check for token to keep user logged in
@@ -49,6 +50,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
             </Switch>
+            <Footer />
           </div>
         </Router>
       </Provider>
