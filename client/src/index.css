@@ -280,8 +280,18 @@ small a {
 }
 
 footer {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  margin-left: -8%;
+  /* position: fixed; */
+  /* bottom: 10px; */
+  margin-left: 40%;
+  
 }
+
+
+/* ---------------- */
+/* Media Queries 
+/* ---------------- */
+/* @media only screen and (max-width: 1476px){
+  h1 {
+     font-size: 2rem;
+  }
+} */
